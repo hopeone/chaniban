@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>차니반점 | 찾아오는 길</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <h1>차니반점</h1>
+    <p>속초 동명동 중국집</p>
+    <nav class="nav">
+        <a href="index.html">메뉴</a>
+        <a href="route.html" class="active">찾아오는길</a>
+        <a href="board.html">게시판</a>
+    </nav>
+</header>
+<main class="info-section">
+    <h2>찾아오는 길</h2>
+    <p><strong>주소</strong><br>
+    강원도 속초시 법대로20 인트레빌하버뷰 상가내</p>
+    <p><strong>전화번호</strong><br>
+    <a href="tel:033-635-8220">033-635-8220</a></p>
+    <p><strong>영업시간</strong><br>
+    매일 11:00 ~ 20:00<br>
+    (일요일 휴무)</p>
+    <div class="map">
+        <a href="https://naver.me/5v3esC0f" target="_blank" class="map-link">
+            네이버 지도에서 위치 보기
+        </a>
+    </div>
+</main>
+<footer class="footer">
+    © 2023–<span id="year"></span> 차니반점
+</footer>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

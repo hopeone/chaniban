@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>차니반점 | 메뉴</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+    <h1>차니반점</h1>
+    <p>속초 동명동 중국집</p>
+    <nav class="nav">
+        <a href="index.html" class="active">메뉴</a>
+        <a href="route.html">찾아오는길</a>
+        <a href="board.html">게시판</a>
+    </nav>
+</header>
+<main class="menu-section">
+    <h2>메뉴</h2>
+    <div class="menu-grid">
+        <div class="menu-card">
+            <img src="img/jjajang.png" alt="짜장면">
+            <h3>짜장면</h3>
+            <p class="desc">춘장과 양파를 볶아 깊고 구수한 맛</p>
+            <p class="price">8,000원</p>
+            <p class="allergy">알레르기: 밀, 대두, 돼지고기</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/jjampong.png" alt="짬뽕">
+            <h3>짬뽕</h3>
+            <p class="desc">새우,오징어,홍합,가리비,목이버섯,새송이버섯</p>
+            <p class="price">11,000원</p>
+            <p class="allergy">알레르기: 해산물, 밀, 대두, 돼지고기</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/sea-tray.png" alt="해물쟁반짜장">
+            <h3>해물쟁반짜장</h3>
+            <p class="desc">각종해물과 야채를 볶아낸 요리</p>
+            <p class="price">현재 미판매중</p>
+            <p class="allergy">알레르기: 밀, 대두, 돼지고기,버섯</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/tang1.png" alt="탕수육">
+            <h3>탕수육</h3>
+            <p class="desc">겉은 바삭하고 속은 촉촉한 탕수육,튀김옷 얇음</p>
+            <p class="price">14,000원 ~ 39,000원</p>
+            <p class="allergy">알레르기: 돼지고기, 계란</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/Shrimp_Fried_Rice.png" alt="새우볶음밥">
+            <h3>새우볶음밥</h3>
+            <p class="desc">신선한 새우와 채소로 볶아낸 볶음밥</p>
+            <p class="price">9,500원</p>
+            <p class="allergy">알레르기: 계란,쌀,새우,돼지고기,부추,파,숙주</p>
+        </div>
+        <div class="menu-card soldout">
+            <img src="img/img_prepa.png" alt="동파육">
+            <h3>동파육</h3>
+            <p class="desc">천천히 졸여낸 부드러운 동파육</p>
+            <p class="price">미판매중</p>
+            <p class="allergy">알레르기: 돼지고기, 대두, 밀</p>
+        </div>
+        <div class="menu-card">
+            <img src="img/img_prepa.png" alt="중화제육">
+            <h3>중화제육</h3>
+            <p class="desc">불향 가득한 매콤한 중화풍 제육볶음</p>
+            <p class="price">13,000원</p>
+            <p class="allergy">알레르기: 돼지고기, 대두</p>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+    © 2023–<span id="year"></span> 차니반점
+</footer>
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
