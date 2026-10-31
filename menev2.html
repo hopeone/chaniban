@@ -1,0 +1,628 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>차니반점 메뉴판</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Noto+Sans+KR:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --brown: #2C1810;
+  --gold: #C8AA78;
+  --gold-dark: #8B6914;
+  --paper: #EDE6D3;
+}
+
+html, body {
+  width: 210mm;
+  height: 297mm;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  font-family: "Noto Sans KR", sans-serif;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  width: 210mm;
+  height: 297mm;
+  display: grid;
+  grid-template-columns: 53mm minmax(0, 1fr);
+  overflow: hidden;
+  position: relative;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+/* 왼쪽 사이드바 */
+.sidebar {
+  height: 297mm;
+  background: var(--brown);
+  color: var(--gold);
+  padding: 12mm 5mm 9mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.06;
+}
+
+.sidebar-inner {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5mm;
+  min-height: 0;
+}
+
+.sidebar-logo img {
+  display: block;
+  width: 36mm;
+  max-height: 36mm;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+
+.sidebar-store-name {
+  font-family: "Noto Serif KR", serif;
+  font-size: 22px;
+  font-weight: 900;
+  writing-mode: vertical-rl;
+  letter-spacing: 6px;
+}
+
+.sidebar-restaurant {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 13px;
+  font-style: italic;
+  writing-mode: vertical-rl;
+  letter-spacing: 3px;
+  opacity: .65;
+}
+
+.sidebar-illust {
+  position: relative;
+  height: 43mm;
+  flex-shrink: 0;
+  opacity: .75;
+}
+
+.sidebar-illust svg {
+  height: 100%;
+  width: auto;
+}
+
+.sidebar-hours {
+  width: 100%;
+  text-align: center;
+  border-top: .5px solid #C8AA7844;
+  padding-top: 5mm;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hours-label {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  margin-bottom: 3mm;
+}
+
+.hours-day {
+  font-family: "Noto Serif KR", serif;
+  font-size: 11px;
+  margin-bottom: 1mm;
+}
+
+.hours-time {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.hours-closed {
+  display: inline-block;
+  margin-top: 3mm;
+  background: var(--gold-dark);
+  color: #F5EFDF;
+  padding: 1mm 3mm;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+/* 오른쪽 */
+.content {
+  position: relative;
+  height: 297mm;
+  min-width: 0;
+  padding: 11mm 9mm 9mm 9mm;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-header {
+  min-height: 21mm;
+  padding-bottom: 4mm;
+  border-bottom: 1px solid var(--gold-dark);
+  margin-bottom: 5mm;
+  padding-right: 29mm;
+}
+
+.content-header-tag {
+  display: inline-block;
+  background: var(--gold-dark);
+  color: #F5EFDF;
+  font-size: 9px;
+  letter-spacing: 1px;
+  padding: 1mm 2mm;
+  white-space: nowrap;
+}
+
+.content-header-sub {
+  font-family: "Cormorant Garamond", serif;
+  font-style: italic;
+  font-size: 12px;
+  color: #8B7355;
+  margin-top: 2mm;
+}
+
+.qr-area {
+  position: absolute;
+  top: 11mm;
+  right: 9mm;
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+}
+
+.qr-area img {
+  width: 16mm;
+  height: 16mm;
+  object-fit: contain;
+}
+
+.qr-caption {
+  width: 15mm;
+  font-size: 7px;
+  line-height: 1.4;
+  color: #8B7355;
+}
+
+/* 메뉴 섹션 */
+.section {
+  margin-bottom: 5mm;
+  break-inside: avoid;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+  padding: 2.2mm 3mm;
+  margin-bottom: 2mm;
+  background: var(--brown);
+}
+
+.section-num {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 21px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.section-title-wrap {
+  flex-shrink: 0;
+}
+
+.section-title-kr {
+  color: #F5EFDF;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.section-title-en {
+  color: var(--gold);
+  font-size: 8px;
+  letter-spacing: 2px;
+  opacity: .8;
+}
+
+.section-rule {
+  flex: 1;
+  height: .5px;
+  background: #C8AA7866;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2mm;
+  padding: 1.7mm 0;
+  border-bottom: .5px dashed #C8AA78;
+}
+
+.menu-item:last-child {
+  border-bottom: 0;
+}
+
+.menu-name {
+  font-family: "Noto Serif KR", serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1C0E06;
+  min-width: 0;
+}
+
+.menu-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1C0E06;
+  white-space: nowrap;
+}
+
+.menu-note {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #333;
+  white-space: nowrap;
+}
+
+.sub-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1.1mm 0 1.1mm 4mm;
+  border-bottom: .5px dashed #C8AA7866;
+}
+
+.sub-name {
+  font-size: 12px;
+  color: #3C2A18;
+}
+
+.sub-price {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1C0E06;
+}
+
+/* 음료 2열 */
+.drinks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 4mm;
+}
+
+.drinks-grid .menu-name {
+  font-size: 11px;
+}
+
+.drinks-grid .menu-price {
+  font-size: 11px;
+}
+
+.drinks-grid .menu-item {
+  gap: 1mm;
+  padding: 1.7mm 0;
+}
+
+/* 알레르기 */
+.allergy {
+  margin-top: 1mm;
+  padding-top: 3mm;
+  border-top: .5px solid var(--gold-dark);
+}
+
+.allergy-title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  margin-bottom: 2mm;
+}
+
+.allergy p {
+  font-size: 10px;
+  line-height: 1.75;
+  color: #5C4A30;
+}
+
+/* 하단 안내 */
+.notice-bar {
+  margin-top: 4mm;
+  padding: 2.5mm 2mm;
+  background: var(--brown);
+  color: var(--gold);
+  text-align: center;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.footer-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.3mm;
+  background: var(--gold-dark);
+}
+
+/* 인쇄 */
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: hidden !important;
+  }
+
+  .sidebar, .content {
+    height: 297mm !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+  <aside class="sidebar">
+
+    <svg class="sidebar-pattern" viewBox="0 0 210 1123" preserveAspectRatio="none">
+      <defs>
+        <pattern id="pattern" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M20 5 L35 20 L20 35 L5 20 Z"
+                fill="none" stroke="#C8AA78" stroke-width=".5"/>
+          <circle cx="20" cy="20" r="2" fill="#C8AA78"/>
+        </pattern>
+      </defs>
+      <rect width="210" height="1123" fill="url(#pattern)"/>
+    </svg>
+
+    <div class="sidebar-inner">
+      <div class="sidebar-logo">
+        <img src="logo.png" alt="차니반점 로고">
+      </div>
+      <div class="sidebar-store-name">차니반점</div>
+      <div class="sidebar-restaurant">Restaurant</div>
+    </div>
+
+    <div class="sidebar-illust">
+      <svg viewBox="0 0 110 190">
+        <g stroke="#C8AA78" fill="none">
+          <ellipse cx="55" cy="158" rx="48" ry="14" stroke-width="1.5"/>
+          <path d="M7 158 Q7 122 55 114 Q103 122 103 158" stroke-width="1.5"/>
+          <path d="M18 138 Q38 124 55 138 Q72 152 92 138" stroke-width="2"/>
+          <path d="M22 148 Q42 134 58 148 Q74 162 94 148" stroke-width="1.5"/>
+          <path d="M20 128 Q40 116 57 128 Q73 140 90 128" stroke-width="1.5"/>
+          <line x1="38" y1="22" x2="50" y2="178" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="55" y1="18" x2="66" y2="174" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M41 74 Q52 58 63 74" stroke-width="2.5"/>
+          <path d="M43 83 Q54 67 64 83" stroke-width="2"/>
+          <path d="M44 12 Q40 5 44 0" stroke-width="1.2"/>
+          <path d="M58 10 Q54 3 58 0" stroke-width="1.2"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="sidebar-hours">
+      <div class="hours-label">영업시간</div>
+      <div class="hours-day">월 ~ 토</div>
+      <div class="hours-time">11:30 – 19:30</div>
+      <div class="hours-closed">일요일 휴무</div>
+    </div>
+
+  </aside>
+
+  <main class="content">
+
+    <div class="qr-area">
+      <img src="qr.png" alt="영문 메뉴 QR코드">
+      <div class="qr-caption">
+        Scan to view our English menu.
+      </div>
+    </div>
+
+    <header class="content-header">
+      <div class="content-header-tag">Chinese Restaurant · 차니반점</div>
+      <div class="content-header-sub">Authentic flavors, made with heart</div>
+    </header>
+
+    <!-- 01 면 요리 -->
+    <section class="section">
+      <div class="section-label">
+        <span class="section-num">01</span>
+        <div class="section-title-wrap">
+          <div class="section-title-kr">면 요리</div>
+          <div class="section-title-en">Noodles</div>
+        </div>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">짜장면</span>
+        <span class="menu-price">8,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">해물짬뽕</span>
+        <span class="menu-price">11,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">해물쟁반짜장 <span class="menu-note">(곱빼기 X)</span></span>
+        <span class="menu-price">12,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">소고기짬뽕</span>
+        <span class="menu-price">13,000</span>
+      </div>
+    </section>
+
+    <!-- 02 밥류 -->
+    <section class="section">
+      <div class="section-label">
+        <span class="section-num">02</span>
+        <div class="section-title-wrap">
+          <div class="section-title-kr">밥류</div>
+          <div class="section-title-en">Rice Dishes</div>
+        </div>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">해물짬뽕밥</span>
+        <span class="menu-price">11,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">소고기짬뽕밥</span>
+        <span class="menu-price">13,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">중화제육덮밥 <span class="menu-note">(계란후라이 없음)</span></span>
+        <span class="menu-price">12,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">공기밥</span>
+        <span class="menu-price">1,000</span>
+      </div>
+    </section>
+
+    <!-- 03 튀김 요리 -->
+    <section class="section">
+      <div class="section-label">
+        <span class="section-num">03</span>
+        <div class="section-title-wrap">
+          <div class="section-title-kr">튀김 요리</div>
+          <div class="section-title-en">Fried Dishes</div>
+        </div>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">등심탕수육</span>
+      </div>
+
+      <div class="sub-item">
+        <span class="sub-name">미니</span>
+        <span class="sub-price">15,000</span>
+      </div>
+      <div class="sub-item">
+        <span class="sub-name">소</span>
+        <span class="sub-price">23,000</span>
+      </div>
+      <div class="sub-item">
+        <span class="sub-name">중</span>
+        <span class="sub-price">32,000</span>
+      </div>
+      <div class="sub-item">
+        <span class="sub-name">대</span>
+        <span class="sub-price">39,000</span>
+      </div>
+
+      <div class="menu-item">
+        <span class="menu-name">튀김만두 (8P)</span>
+        <span class="menu-price">6,000</span>
+      </div>
+    </section>
+
+    <!-- 04 음료 및 주류 -->
+    <section class="section">
+      <div class="section-label">
+        <span class="section-num">04</span>
+        <div class="section-title-wrap">
+          <div class="section-title-kr">음료 &amp; 주류</div>
+          <div class="section-title-en">Drinks</div>
+        </div>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="drinks-grid">
+        <div class="menu-item">
+          <span class="menu-name">소주 · 맥주</span>
+          <span class="menu-price">5,000</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-name">아사히 슈퍼드라이</span>
+          <span class="menu-price">5,000</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-name">연태주 (소)</span>
+          <span class="menu-price">10,000</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-name">이과두주</span>
+          <span class="menu-price">5,000</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-name">고량주</span>
+          <span class="menu-price">6,000</span>
+        </div>
+        <div class="menu-item">
+          <span class="menu-name">음료수</span>
+          <span class="menu-price">2,000</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 알레르기 정보 -->
+    <div class="allergy">
+      <div class="allergy-title">⚠ 알레르기 정보 · Allergy Information</div>
+      <p>
+        짜장면 — 돼지고기<br>
+        짬뽕 — 새우, 당근, 목이버섯, 오징어, 가리비, 홍합, 굴<br>
+        등심탕수육 — 레몬, 월계수, 사과, 생강, 파, 양파, 계피
+      </p>
+    </div>
+
+    <div class="notice-bar">
+      짜장면 외 메뉴는 주문과 동시에 조리되어 다소 시간이 걸릴 수 있습니다.
+    </div>
+
+    <div class="footer-strip"></div>
+
+  </main>
+</div>
+</body>
+</html>
