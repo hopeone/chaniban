@@ -109,7 +109,7 @@
     <nav class="nav">
         <a href="index.html" class="active">메뉴</a>
         <a href="route.html">찾아오는길</a>
-        <a href="board.html">게시판</a>
+        <a href="board.html">자주 묻는 질문</a>
     </nav>
 </header>
 <main class="menu-section">
@@ -158,15 +158,22 @@
             <p class="allergy">알레르기: 돼지고기, 대두</p>
         </div>
     </div>
-    <section class="business-hours" aria-label="영업시간">
-        <h2>영업시간</h2>
-        
-<p>월~목 11:30~19:30 / 금요일 11:30~15:00 / 토요일 11:00~19:30 / 일요일 정기휴무</p>
+   
+<section class="business-hours" aria-label="영업시간">
+    <h2>영업시간</h2>
+    <div class="hours-list">
+        <div><span>월요일 ~ 목요일</span><span>11:30 ~ 19:30</span></div>
+        <div><span>금요일</span><span>11:30 ~ 15:00</span></div>
+        <div><span>토요일</span><span>11:00 ~ 19:30</span></div>
+        <div><span>일요일</span><span class="closed">정기휴무</span></div>
+    </div>
+    <p class="hours-note">브레이크타임 없이 운영합니다.</p>
+</section>
 
-    </section>
 </main>
 <footer class="footer">
-    © 2023–<span id="year"></span> 차니반점
+    <p>전화주문 : <a href="tel:01096178220">010-9617-8220</a></p>
+    <p>© 2023–<span id="year"></span> 차니반점</p>
 </footer>
 <script>
     document.getElementById('year').textContent = new Date().getFullYear();

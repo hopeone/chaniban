@@ -141,3 +141,36 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* 영업시간 디자인 */
+.business-hours {
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.hours-list {
+    max-width: 340px;
+    margin: 25px auto 0;
+}
+
+.hours-list > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 13px 0;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 16px;
+}
+
+.hours-list .closed {
+    color: #ae1029;
+    font-weight: bold;
+}
+
+.hours-note {
+    margin-top: 20px;
+    color: #777;
+    font-size: 14px;
+}
