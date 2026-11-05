@@ -22,6 +22,7 @@
   "@id": "https://www.chaniban.co.kr/#restaurant",
   "name": "차니반점",
   "url": "https://www.chaniban.co.kr/",
+  "telephone": "+82-10-9617-8220",
   "description": "강원특별자치도 속초시 법대로 20의 중국집. 해물쟁반짜장은 뜨거운 철판에 지글지글 제공하는 철판짜장 스타일의 메뉴이며, 짜장면·짬뽕·탕수육도 판매합니다.",
   "servesCuisine": "중식",
   "address": {
@@ -31,11 +32,8 @@
     "addressRegion": "강원특별자치도",
     "addressCountry": "KR"
   },
-
-        
-  "hasMenu": "https://www.chaniban.co.kr/index.html",
-  
-        "hasMenuItem": [
+  "hasMenu": "https://www.chaniban.co.kr/",
+  "hasMenuItem": [
     {
       "@type": "MenuItem",
       "name": "짜장면",
@@ -66,6 +64,17 @@
     },
     {
       "@type": "MenuItem",
+      "name": "탕수육",
+      "description": "겉은 바삭하고 속은 촉촉한 탕수육",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "15000",
+        "highPrice": "39000",
+        "priceCurrency": "KRW"
+      }
+    },
+    {
+      "@type": "MenuItem",
       "name": "중화제육",
       "offers": {
         "@type": "Offer",
@@ -74,31 +83,31 @@
       }
     }
   ],
-"openingHoursSpecification": [
-  {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday"
-    ],
-    "opens": "11:30",
-    "closes": "19:30"
-  },
-  {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": "Friday",
-    "opens": "11:30",
-    "closes": "15:00"
-  },
-  {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": "Saturday",
-    "opens": "11:00",
-    "closes": "19:30"
-  }
-]
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "11:30",
+      "closes": "19:30"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Friday",
+      "opens": "11:30",
+      "closes": "15:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "11:00",
+      "closes": "19:30"
+    }
+  ]
 }
     </script>
 </head>
@@ -109,7 +118,7 @@
     <nav class="nav">
         <a href="index.html" class="active">메뉴</a>
         <a href="route.html">찾아오는길</a>
-        <a href="board.html">자주 묻는 질문</a>
+        <a href="faq.html">자주 묻는 질문</a>
     </nav>
 </header>
 <main class="menu-section">
@@ -172,6 +181,7 @@
 
 </main>
 <footer class="footer">
+    <p>차니반점 | 강원특별자치도 속초시 법대로 20, 인트레빌하버뷰 105호</p>
     <p>전화주문 : <a href="tel:01096178220">010-9617-8220</a></p>
     <p>© 2023–<span id="year"></span> 차니반점</p>
 </footer>
