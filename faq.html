@@ -20,43 +20,12 @@ body {
 }
 
 /* 상단 */
-header {
-    background: #ae1029;
-    color: white;
-    text-align: center;
-    padding: 25px 15px 35px;
-}
 
-header h1 {
-    font-size: 38px;
-    margin: 0 0 10px;
-}
-
-header p {
-    margin: 0;
-    font-size: 17px;
-}
 
 /* 메뉴 */
-nav {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    flex-wrap: wrap;
-}
 
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 19px;
-    font-weight: bold;
-    padding-bottom: 8px;
-}
 
-nav a.active {
-    border-bottom: 3px solid white;
-}
+
 
 /* FAQ 본문 */
 main {
@@ -140,11 +109,11 @@ footer {
 </head>
 <body>
 
-<header>
+<header class="header">
     <h1>차니반점</h1>
     <p>속초 동명동 중국집</p>
-
-    <nav>
+<link rel="stylesheet" href="style.css">
+    <nav class="nav">
         <a href="index.html">메뉴</a>
         <a href="route.html">찾아오는길</a>
         <a href="faq.html" class="active">자주 묻는 질문</a>
